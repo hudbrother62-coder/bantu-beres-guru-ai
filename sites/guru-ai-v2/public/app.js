@@ -89,10 +89,10 @@ document.getElementById('newProjectTop').onclick=()=>openProjectModal();document
 setTheme(state.theme);render();
 
 (function showGroqUpdate(){
- const id="bantuberes-guru-ai-v2-groq-notice-20261108";
+ const id="bantuberes-guru-ai-v2-groq-notice-20261109-video";
  if(localStorage.getItem(id)==="read")return;
  const el=document.createElement("section");el.className="groq-update-banner";el.setAttribute("role","status");
- el.innerHTML='<strong>✨ Pembaruan Guru AI ke GroqCloud</strong><p>Gemini diganti GroqCloud. Masukkan key baru gsk_... agar fitur AI berfungsi. Model otomatis; proyek dan hasil sebelumnya tetap tersimpan.</p><div><button type="button" data-open-groq>Buka Pengaturan</button><button type="button" data-close-groq>Mengerti</button></div>';
+ el.innerHTML='<strong>✨ Pembaruan Guru AI ke GroqCloud</strong><p>Gemini diganti GroqCloud. Masukkan key baru gsk_... agar fitur AI berfungsi. Video tutorial baru tersedia di Workspace. Model otomatis; proyek dan hasil sebelumnya tetap tersimpan.</p><div><button type="button" data-open-groq>Buka Pengaturan</button><button type="button" data-close-groq>Mengerti</button></div>';
  el.querySelector("[data-open-groq]").onclick=()=>render("settings");
  el.querySelector("[data-close-groq]").onclick=()=>{localStorage.setItem(id,"read");el.remove();};
  document.body.append(el);
