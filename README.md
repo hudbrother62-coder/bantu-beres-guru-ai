@@ -22,3 +22,9 @@ Untuk memperbarui setiap situs yang sudah ada dengan Netlify Function, hubungkan
 Uji sebelum menganggap deployment selesai: status function selain 404, validasi key Groq, model auto, generator, chat, tutorial, banner pembaruan, dan localStorage lama.
 
 PENTING: source ini direkonstruksi dari halaman publik yang berjalan. Kedua situs Netlify tidak memiliki repositori Git terhubung sehingga repository ini bukan jaminan bahwa Netlify sudah menggunakan kode terbaru.
+
+## Video tutorial resmi pengguna (9 November 2026)
+
+Video cara membuat, menyalin dan memasukkan API key GroqCloud telah disematkan pada menu **Workspace** di kedua versi Guru AI: https://youtu.be/WBX9Yvk4eKs. Key pengguna harus diawali `gsk_`, dan model dipilih otomatis dari model yang tersedia pada akun GroqCloud. Masa berlaku key tidak sama dengan kuota penggunaan AI.
+
+GitHub Actions sekarang menyiapkan paket build untuk kedua situs Netlify. Setelah pengujian lulus pada branch `main`, workflow juga mencoba deploy langsung ke **dua site ID asli** melalui Netlify CLI jika tersedia secret repository `NETLIFY_AUTH_TOKEN`. Tanpa kredensial tersebut, deploy produksi tidak dilakukan meskipun QA berhasil; hubungkan masing-masing proyek Netlify ke foldernya atau konfigurasi satu secret itu untuk mengaktifkan deployment otomatis.
