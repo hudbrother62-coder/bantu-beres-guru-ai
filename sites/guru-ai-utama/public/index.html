@@ -829,10 +829,10 @@ async function sendChat(){if(!hasCredential()){openCredential();return}const inp
 function initialSetup(){applyTheme();fillClasses();renderDashboard();renderSettings();if(!hasCredential())setTimeout(openCredential,500)}
 initialSetup();
 (function showGroqUpdate(){
- const id="bbe_groq_update_notice_20261108";
+ const id="bbe_groq_update_notice_20261109_video";
  if(localStorage.getItem(id)==="read")return;
  const box=document.createElement("section");box.setAttribute("role","status");box.className="groq-update-toast";
- box.innerHTML='<strong>✨ Guru AI diperbarui ke GroqCloud</strong><p>Gemini diganti GroqCloud. Key lama perlu diganti gsk_... di Workspace. Model otomatis, seluruh proyek dan hasil lama tetap tersimpan.</p><div><button type="button" id="openGroqSettings">Buka Workspace</button><button type="button" id="closeGroqNotice">Mengerti</button></div>';
+ box.innerHTML='<strong>✨ Guru AI diperbarui ke GroqCloud</strong><p>Gemini diganti GroqCloud. Key lama perlu diganti gsk_... di Workspace. Video tutorial terbaru sudah tersedia. Model otomatis; seluruh proyek dan hasil lama tetap tersimpan.</p><div><button type="button" id="openGroqSettings">Buka Workspace</button><button type="button" id="closeGroqNotice">Mengerti</button></div>';
  box.querySelector("#openGroqSettings").onclick=()=>nav("settings");
  box.querySelector("#closeGroqNotice").onclick=()=>{localStorage.setItem(id,"read");box.remove();};
  document.body.append(box);
