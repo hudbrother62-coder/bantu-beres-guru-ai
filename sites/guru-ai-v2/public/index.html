@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="id"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=52ed7004-6ccf-4f8a-afdd-22062958dd9a
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Workspace AI untuk membantu guru merancang pembelajaran dan bahan ajar berbasis proyek.">
+  <title>BantuBeres Guru AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="subject-mode.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark">B</div><div><strong>BantuBeres<br>Guru AI</strong><small>Teaching workspace</small></div></div>
+      <nav id="mainNav" aria-label="Navigasi utama">
+        <button data-view="dashboard" class="nav-item active"><span>⌂</span> Dashboard</button>
+        <button data-view="projects" class="nav-item"><span>▣</span> Proyek</button>
+        <button data-view="generator" class="nav-item"><span>✦</span> Generator AI</button>
+        <button data-view="chat" class="nav-item"><span>◌</span> Ngobrol bareng AI</button>
+        <button data-view="settings" class="nav-item"><span>⚙</span> Workspace</button>
+      </nav>
+      <div class="connection-card" id="connectionCard"><i></i><div><strong>AI belum terhubung</strong><small>Masukkan API key di Workspace</small></div></div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar"><button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button><strong id="pageTitle">Dashboard Guru</strong><button class="outline-btn" id="newProjectTop">＋ Proyek baru</button></header>
+      <main id="view"><div class="page"><section class="hero"><div class="eyebrow">BantuBeres Guru AI</div><h1>Lebih sedikit waktu menyiapkan.<br>Lebih banyak waktu mengajar.</h1><p>Workspace AI yang membantu guru SD sampai SMA/SMK merancang pembelajaran, bahan ajar, asesmen, strategi, hingga refleksi keputusan mengajar — semuanya berbasis proyek.</p><button class="primary-btn" data-new-project="">Mulai proyek</button></section><section class="stats"><article class="stat"><span>Proyek aktif</span><strong>0</strong><em>tersimpan di perangkat</em></article><article class="stat"><span>Hasil dibuat</span><strong>0</strong><em>termasuk semua versi</em></article><article class="stat"><span>Pertemuan terencana</span><strong>0</strong><em>di seluruh proyek</em></article><article class="stat"><span>Mode AI</span><strong>—</strong><em>kredensial lokal</em></article></section><div class="section-title"><div><h2>Semua yang guru butuhkan</h2><p>Pilih alat, detail proyek sudah ikut terbawa.</p></div></div><section class="tool-grid"><article class="tool-card"><div class="tool-icon">📘</div><h3>Modul Ajar</h3><p>Perangkat lengkap siap digunakan</p><button class="text-btn" data-tool="Modul Ajar">Gunakan →</button></article><article class="tool-card"><div class="tool-icon">📝</div><h3>LKPD</h3><p>Aktivitas siswa yang terarah</p><button class="text-btn" data-tool="LKPD">Gunakan →</button></article><article class="tool-card"><div class="tool-icon">🎯</div><h3>Asesmen Soal</h3><p>Latihan, kunci, dan indikator</p><button class="text-btn" data-tool="Asesmen Soal">Gunakan →</button></article><article class="tool-card"><div class="tool-icon">🧭</div><h3>Strategi Pembelajaran</h3><p>Memilih keputusan mengajar efektif</p><button class="text-btn" data-tool="Strategi Pembelajaran">Gunakan →</button></article><article class="tool-card"><div class="tool-icon">📚</div><h3>Bahan Ajar</h3><p>Materi yang mudah dipahami siswa</p><button class="text-btn" data-tool="Bahan Ajar">Gunakan →</button></article><article class="tool-card"><div class="tool-icon">📊</div><h3>Rubrik Penilaian</h3><p>Kriteria objektif dan mudah dipakai</p><button class="text-btn" data-tool="Rubrik Penilaian">Gunakan →</button></article><article class="tool-card"><div class="tool-icon">🎤</div><h3>Panduan Presentasi</h3><p>Alur slide, narasi, dan tips</p><button class="text-btn" data-tool="Panduan Presentasi">Gunakan →</button></article><article class="tool-card"><div class="tool-icon">🗺️</div><h3>Peta Konsep</h3><p>Peta perjalanan memahami materi</p><button class="text-btn" data-tool="Peta Konsep">Gunakan →</button></article><article class="tool-card"><div class="tool-icon">💬</div><h3>Ngobrol Bareng AI</h3><p>Diskusi bebas, kritik, saran, dan keputusan mengajar bersama AI.</p><button class="text-btn" data-go="chat">Buka ruang ngobrol →</button></article></section><div class="section-title"><div><h2>Proyek terbaru</h2><p>Kerjakan dari konteks yang sama tanpa mengisi ulang.</p></div><button class="text-btn" data-go="projects">Lihat semua</button></div><div class="empty">Belum ada proyek. Mulai dari satu topik yang sedang kamu ajarkan.</div></div></main>
+    </section>
+  </div>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <div class="modal-backdrop" id="modalBackdrop">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close-btn" id="closeModal" aria-label="Tutup">×</button>
+      <div id="modalContent"></div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="groq-client.js"></script>
+  <script src="app.js"></script>
+</body></html>
