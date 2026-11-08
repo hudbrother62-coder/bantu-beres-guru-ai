@@ -19,9 +19,10 @@ for(const path of paths) {
     assert.match(proxy,/https:\/\/api\.groq\.com\/openai\/v1/);
     assert.doesNotMatch(html,/generativelanguage\.googleapis\.com/);
     assert.doesNotMatch(html,/\/\.netlify\/scripts\/hud/);
-    assert.match(html,/GroqCloud/);
-    assert.match(html,/20261108/);
-    assert.match(html,/console\.groq\.com\/keys/);
+    const renderedCode=html+(path.endsWith("v2")?read(path+"/public/app.js"):"");
+    assert.match(renderedCode,/GroqCloud/);
+    assert.match(renderedCode,/20261108/);
+    assert.match(renderedCode,/console\.groq\.com\/keys/);
   });
   test(path+' Netlify Function validates keys and shields credential',async()=>{
     const {default:handler}=await import(new URL(path+'/netlify/functions/groq-api.mjs',ROOT));
