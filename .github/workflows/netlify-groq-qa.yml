@@ -33,3 +33,30 @@ jobs:
             guru-ai-utama-groq.zip
             guru-ai-v2-groq.zip
           if-no-files-found: error
+
+  deploy:
+    name: Publish both original Netlify sites after QA
+    needs: verify
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with:
+          node-version: '22'
+      - name: Report missing publishing permission
+        if: env.NETLIFY_AUTH_TOKEN == ''
+        run: echo "::warning::Netlify production deploy skipped. Configure NETLIFY_AUTH_TOKEN in repository Actions secrets, or connect each original Netlify site to its repository base directory."
+      - name: Install Netlify CLI
+        if: env.NETLIFY_AUTH_TOKEN != ''
+        run: npm install --global netlify-cli@latest
+      - name: Publish Guru AI original site
+        if: env.NETLIFY_AUTH_TOKEN != ''
+        working-directory: sites/guru-ai-utama
+        run: netlify deploy --prod --dir public --functions netlify/functions --site b2445b3b-5d9b-479e-a4bd-46968d34f9c3 --message "GroqCloud tutorial WBX9Yvk4eKs"
+      - name: Publish Guru AI V2 site
+        if: env.NETLIFY_AUTH_TOKEN != ''
+        working-directory: sites/guru-ai-v2
+        run: netlify deploy --prod --dir public --functions netlify/functions --site 52ed7004-6ccf-4f8a-afdd-22062958dd9a --message "GroqCloud tutorial WBX9Yvk4eKs"
