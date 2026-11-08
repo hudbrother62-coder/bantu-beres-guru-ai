@@ -21,7 +21,7 @@ for(const path of paths) {
     assert.doesNotMatch(html,/\/\.netlify\/scripts\/hud/);
     const renderedCode=html+(path.endsWith("v2")?read(path+"/public/app.js"):"");
     assert.match(renderedCode,/GroqCloud/);
-    assert.match(renderedCode,/20261108/);
+    assert.match(renderedCode,/20261109/);
     assert.match(renderedCode,/console\.groq\.com\/keys/);
   });
   test(path+' Netlify Function validates keys and shields credential',async()=>{
