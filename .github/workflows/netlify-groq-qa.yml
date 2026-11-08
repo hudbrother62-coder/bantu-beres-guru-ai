@@ -1,0 +1,35 @@
+name: Guru AI Netlify GroqCloud QA
+on:
+  push:
+    branches: [main, feat/netlify-guru-ai-groq-20261108]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check sites/guru-ai-v2/public/app.js
+          node --check sites/guru-ai-v2/public/groq-client.js
+          node --check sites/guru-ai-utama/public/groq-client.js
+          node --check sites/guru-ai-v2/netlify/functions/groq-api.mjs
+          node --check sites/guru-ai-utama/netlify/functions/groq-api.mjs
+      - name: Run BYOK, model fallback and data safety tests
+        run: node --test tests/groq-netlify.test.mjs
+      - name: Assemble both Netlify source packages
+        run: |
+          cd sites/guru-ai-utama && zip -q -r "$GITHUB_WORKSPACE/guru-ai-utama-groq.zip" public netlify netlify.toml
+          cd "$GITHUB_WORKSPACE/sites/guru-ai-v2" && zip -q -r "$GITHUB_WORKSPACE/guru-ai-v2-groq.zip" public netlify netlify.toml
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: guru-ai-groqcloud-netlify-packages
+          path: |
+            guru-ai-utama-groq.zip
+            guru-ai-v2-groq.zip
+          if-no-files-found: error
