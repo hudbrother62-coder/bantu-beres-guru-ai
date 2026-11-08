@@ -44,7 +44,10 @@ function settingsView(){
  '<p class="field-hint">Status: '+(hasKey?'Key Groq tersimpan':'Belum ada key Groq aktif')+' · Model: otomatis.</p>'+
  '<p><a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer">Buka GroqCloud Console untuk membuat API key ↗</a></p>'+
  '<div class="card-actions" style="margin-top:18px"><button class="primary-btn" id="saveCredentials">Uji Koneksi & Simpan</button><button class="danger-btn" id="clearCredentials">Hapus key pribadi</button></div></section></div>'+
- '<section class="settings-card groq-tutorial"><h2>Tutorial memasukkan API key GroqCloud</h2><div class="tutorial-grid">'+
+ '<section class="settings-card groq-tutorial"><h2>Tutorial memasukkan API key GroqCloud</h2>'+
+ '<div class="groq-video-frame"><iframe src="https://www.youtube.com/embed/WBX9Yvk4eKs" title="Video tutorial membuat dan memasukkan API key GroqCloud untuk Guru AI V2" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>'+
+ '<p class="groq-video-caption"><a href="https://youtu.be/WBX9Yvk4eKs" target="_blank" rel="noopener noreferrer">Tonton video asli di YouTube ↗</a> · Model otomatis, dan kuota pemakaian mengikuti ketentuan GroqCloud.</p>'+
+ '<div class="tutorial-grid">'+
  '<p><b>1.</b> Daftar atau masuk di <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer">GroqCloud API Keys</a>.</p>'+
  '<p><b>2.</b> Klik <strong>Create API Key</strong>, beri nama, lalu salin key yang diawali <code>gsk_</code>.</p>'+
  '<p><b>3.</b> Tempel key di kolom Workspace, tekan <strong>Uji Koneksi & Simpan</strong>.</p>'+
