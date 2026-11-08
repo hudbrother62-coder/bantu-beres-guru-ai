@@ -87,3 +87,18 @@ test('browser client automatically chooses available model and fallback',async()
   assert.equal(result.text,'Lanjut dari model cadangan');
   assert.deepEqual(calls.filter(x=>x.action==='chat').map(x=>x.model),['openai/gpt-oss-120b','llama-3.1-8b-instant']);
 });
+
+
+test("Both Netlify Guru AI variants embed the user's GroqCloud tutorial and retain their AI settings", () => {
+  const main=read("sites/guru-ai-utama/public/index.html");
+  const v2=read("sites/guru-ai-v2/public/app.js");
+  const css=read("sites/guru-ai-v2/public/app.css");
+  for (const app of [main,v2]) {
+    assert.match(app,/youtube\.com\/embed\/WBX9Yvk4eKs/);
+    assert.match(app,/youtu\.be\/WBX9Yvk4eKs/);
+    assert.match(app,/console\.groq\.com\/keys/);
+    assert.match(app,/allowfullscreen/);
+    assert.match(app,/model otomatis|Model otomatis|Model dipilih otomatis/i);
+  }
+  assert.match(css,/groq-video-frame iframe/);
+});
