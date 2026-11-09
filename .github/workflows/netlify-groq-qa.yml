@@ -4,7 +4,7 @@ on:
     branches: [main, feat/groq-video-WBX9Yvk4eKs-20261109]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -22,17 +22,27 @@ jobs:
           node --check sites/guru-ai-utama/netlify/functions/groq-api.mjs
       - name: Run BYOK, model fallback and data safety tests
         run: node --test tests/groq-netlify.test.mjs
-      - name: Assemble both Netlify source packages
-        run: |
-          cd sites/guru-ai-utama && zip -q -r "$GITHUB_WORKSPACE/guru-ai-utama-groq.zip" public netlify netlify.toml
-          cd "$GITHUB_WORKSPACE/sites/guru-ai-v2" && zip -q -r "$GITHUB_WORKSPACE/guru-ai-v2-groq.zip" public netlify netlify.toml
+      - name: Assemble reproducible Netlify source ZIPs
+        run: python3 scripts/build-netlify-release-zips.py
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: guru-ai-groqcloud-netlify-packages
           path: |
-            guru-ai-utama-groq.zip
-            guru-ai-v2-groq.zip
+            releases/guru-ai-utama-groqcloud.zip
+            releases/guru-ai-v2-groqcloud.zip
           if-no-files-found: error
+      - name: Push the updated GroqCloud source ZIPs to GitHub
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add releases/guru-ai-utama-groqcloud.zip releases/guru-ai-v2-groqcloud.zip
+          if ! git diff --cached --quiet; then
+            git commit -m "build(netlify): refresh Guru AI GroqCloud source ZIPs [skip ci]"
+            git push origin HEAD:main
+          else
+            echo "GroqCloud ZIPs are unchanged."
+          fi
 
   deploy:
     name: Publish both original Netlify sites after QA
